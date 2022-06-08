@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RatesController;
+use App\Http\Controllers\ExchangeRateController;
 
 
 /*
@@ -15,4 +15,4 @@ use App\Http\Controllers\RatesController;
 |
 */
 
-Route::get('/', [RatesController::class, 'index'])->name('rates');
+Route::get('/', [ExchangeRateController::class, 'index'])->name('rates');

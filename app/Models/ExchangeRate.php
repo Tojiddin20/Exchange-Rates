@@ -9,9 +9,8 @@ class ExchangeRate extends Model
 {
     use HasFactory;
 
-    public function getRate()
-    {
-    
+    public static function getRate() {
+
     }
 
 

@@ -10,26 +10,52 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <h2>Курс валют к рублю на {{ date('d-m-y') }}</h2>
                 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Code</th>
-      <th scope="col">Name</th>
-      <th scope="col">Nominal</th>
-      <th scope="col">Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach ($currencies as $currency)
-    <tr>
-      <th scope="row">{{ $currency['code'] }}</th>
-      <td>{{ $currency['name'] }}</td>
-      <td>{{ $currency['nominal'] }}</td>
-      <td>{{ $currency['value'] }}</td>
-    </tr>
-@endforeach
-  </tbody>
-</table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Code</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Nominal</th>
+                      <th scope="col">Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($currencies as $currency)
+                    <tr>
+                      <th scope="row">{{ $currency['code'] }}</th>
+                      <td>{{ $currency['name'] }}</td>
+                      <td>{{ $currency['nominal'] }}</td>
+                      <td>{{ $currency['value'] }}</td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Курс доллара к рублю за последние 30 дней</h3>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Day</th>
+                      <th scope="col">Code</th>
+                      <th scope="col">Value</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $i = 0; ?>
+                    @foreach ($dollar as $dol)
+                    <?php $i++; ?>
+                    <tr>
+                      <th scope="row">{{ $i }}</th>
+                      <th scope="row">{{ $dol['CharCode'] }}</th>
+                      <td>{{ $dol['Value'] }}</td>
+                    </tr>
+                    @endforeach
+                  </tbody>
+                </table>
             </div>
         </div>
     </div>
