@@ -15,16 +15,16 @@
                   <thead>
                     <tr>
                       <th scope="col">Code</th>
-                      <th scope="col">Name</th>
+                      <th scope="col">Name of currency</th>
                       <th scope="col">Nominal</th>
                       <th scope="col">Value</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($currencies as $currency)
+                    @foreach ($exchangeRate as $currency)
                     <tr>
                       <th scope="row">{{ $currency['code'] }}</th>
-                      <td>{{ $currency['name'] }}</td>
+                      <td>{{ $currency['name_of_currency'] }}</td>
                       <td>{{ $currency['nominal'] }}</td>
                       <td>{{ $currency['value'] }}</td>
                     </tr>
@@ -45,13 +45,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <?php $i = 0; ?>
-                    @foreach ($dollar as $dol)
-                    <?php $i++; ?>
+                    @foreach ($usd as $us)
                     <tr>
-                      <th scope="row">{{ $i }}</th>
-                      <th scope="row">{{ $dol['CharCode'] }}</th>
-                      <td>{{ $dol['Value'] }}</td>
+                      <th scope="row">{{ $us['id'] }}</th>
+                      <th scope="row">{{ $us['code'] }}</th>
+                      <td>{{ $us['value'] }}</td>
                     </tr>
                     @endforeach
                   </tbody>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ExchangeRate;
+use App\Models\UsdArchive;
 use App\Services\ExchangeRateGetter;
 
 class ExchangeRateController extends Controller
@@ -16,12 +17,11 @@ class ExchangeRateController extends Controller
 
     public function index() {
         
-        $currencies = $this->exchangeRateGetter->get();
-        $dollar = $this->exchangeRateGetter->archive();
+        // $currencies = $this->exchangeRateGetter->get();
 
         return view('index')->with([
-            'currencies' => $currencies,
-            'dollar' => $dollar
+            'usd' => UsdArchive::all(),
+            'exchangeRate' => ExchangeRate::all()
         ]);
     }
 }
