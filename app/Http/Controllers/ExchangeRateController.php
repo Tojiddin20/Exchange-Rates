@@ -24,4 +24,8 @@ class ExchangeRateController extends Controller
             'exchangeRate' => ExchangeRate::all()
         ]);
     }
+
+    public function test() {
+        dd("test");
+    }
 }

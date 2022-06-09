@@ -16,3 +16,4 @@ use App\Http\Controllers\ExchangeRateController;
 */
 
 Route::get('/', [ExchangeRateController::class, 'index'])->name('rates');
+Route::get('/test', [ExchangeRateController::class, 'test'])->name('test');
