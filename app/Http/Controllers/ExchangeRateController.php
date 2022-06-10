@@ -1,31 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ExchangeRate;
-use App\Models\UsdArchive;
-use App\Services\ExchangeRateGetter;
 
 class ExchangeRateController extends Controller
 {
 
-    public function __construct(
-        private ExchangeRateGetter $exchangeRateGetter
-    ) {}
-
     public function index() {
         
-        // $currencies = $this->exchangeRateGetter->get();
+        $exchangeRate = ExchangeRate::orderBy('day', 'desc')->orderBy('currency_from', 'asc')->paginate(30);
 
         return view('index')->with([
-            'usd' => UsdArchive::all(),
-            'exchangeRate' => ExchangeRate::all()
+            'exchangeRate' => $exchangeRate
         ]);
-    }
-
-    public function test() {
-        dd("test");
     }
 }

@@ -4,7 +4,7 @@ namespace App\Services;
 class ExchangeRateGetter {
 	public function get() {
 		
-	/// Receive JSON exchange rates
+		/// RECEIVE JSON TODAY'S EXCHANGE RATES
 		$arrContextOptions = [
             "ssl" => [
                 "verify_peer" => false,
@@ -12,60 +12,85 @@ class ExchangeRateGetter {
             ],
         ];
 
-    $path = file_get_contents(
-    	"https://www.cbr-xml-daily.ru/daily_json.js", 
-    	false, 
-    	stream_context_create($arrContextOptions)
-    );
+	    $path = file_get_contents(
+	    	"https://www.cbr-xml-daily.ru/daily_json.js", 
+	    	false, 
+	    	stream_context_create($arrContextOptions)
+	    );
 
-    /// Change Data Type to array
-    $data = json_decode($path, true);
+	    /// CHANGE DATA TYPE TO ARRAY
+	    $data = json_decode($path, true);
 
-    /// Receive all currencies
-    $valute = $data['Valute'];
+	    /// RECEIVE ALL CURRENCIES
+	    $valute = $data['Valute'];
+	    $date = $data['Date'];
 
+	    // SELECT REQUIRED CURRENCIES
+	    foreach ($valute as $currencyCode => $v) {
+	    	if(in_array($currencyCode, ['TJS', 'USD', 'EUR', 'UZS', 'KZT'])) {
+	    		$currencies[] = [
+					"day" => $date,
+					"currency_from" => $currencyCode,
+					"currency_to" => 'RUB',
+					"nominal" => $v['Nominal'],
+					"value" => $v['Value']
+	    		]; 
+	    	}
+	    }
 
-    /// Receive the last archive of all exchange rates
-   	$archive = [json_decode(file_get_contents('https:'.$data['PreviousURL']), true)];
+	    return $currencies;
+}
+	// public function getArchives() {
+	/// RECEIVE JSON TODAY'S EXCHANGE RATES
+	// 	$arrContextOptions = [
+ //            "ssl" => [
+ //                "verify_peer" => false,
+ //                "verify_peer_name" => false,
+ //            ],
+ //        ];
 
-   	// Var 1
-	for ($i = 0; $i < 30; $i++) { 
-		// Receive the last 30 archives of all exchange rates
-		if ($i > 0){
-			$archive[$i] = json_decode(file_get_contents('https:'.$archive[$i-1]['PreviousURL']), true);
-		}
-		// Receive the last 30 archives of usd exchange rates
-		$usd[$i] = $archive[$i]['Valute']['USD'];
-	}
+ //    $path = file_get_contents(
+ //    	"https://www.cbr-xml-daily.ru/daily_json.js", 
+ //    	false, 
+ //    	stream_context_create($arrContextOptions)
+ //    );
 
-	// Var 2
-	// // Receive the last 30 archives of all exchange rates
+ //    /// CHANGE DATA TYPE TO ARRAY
+ //    $data = json_decode($path, true);
+
+ //        /// RECEIVE 1 ARCHIVE OF ALL EXCHANGE RATES
+ //   	$archive = [json_decode(file_get_contents('https:'.$data['PreviousURL']), true)];
+
+	// // RECEIVE 30 ARCHIVES OF ALL EXCHANGE RATES
 	// for ($i = 1; $i  < 30; $i++) { 
 	// 	$archive[$i] = json_decode(file_get_contents('https:'.$archive[$i-1]['PreviousURL']), true);
 	// }
 
-	// // Receive the last 30 archives of usd exchange rates
-	// for ($i = 0; $i  < 30; $i++) { 
-	// 	$usd[$i] = $archive[$i]['Valute']['USD'];
-	// }	
 
+	// // SELECT REQUIRED ARCHIVE CURRENCIES 
 
-	// Connect to db
-	$connect = pg_connect('host=localhost port=5432 dbname=laravel user=postgres password=12345');
+	// foreach ($archive as $value) {
+	// 	$archiveArray[] = $value['Valute'];
+	// 	$archiveDate[] = $value['Date'];
+	// }
 
-	foreach ($valute as $currency) {
-		$sql = "INSERT INTO exchange_rates(code, name_of_currency, nominal, value) 
-		VALUES ('".$currency["CharCode"]."', '".$currency["Name"]."', 
-		'".$currency["Nominal"]."', '".$currency["Value"]."' )";
-		pg_query($connect ,$sql);
-	}
+	// $i = 0;
+	// foreach ($archiveArray as $value) {
+	// 	foreach ($value as $currencyCode => $v) {
+	// 		if(in_array($currencyCode, ['TJS', 'USD', 'EUR', 'UZS', 'KZT'])) {
+	// 			$archiveCurrencies[] = [
+	// 				"day" => $archiveDate[$i],
+	// 				"currency_from" => $currencyCode,
+	// 				"currency_to" => 'RUB',
+	// 				"nominal" => $v['Nominal'],
+	// 				"value" => $v['Value']
+	//     		]; 
+	// 		}	
+	// 	}
+	// 	$i++;
+	// }
+	// dd($archiveCurrencies);
+	// return $archiveCurrencies;
+	// }
 
-	foreach ($usd as $us) {
-		$query = "INSERT INTO usd_archives(code, nominal, value) 
-		VALUES ('".$us["CharCode"]."', '".$us["Nominal"]."', '".$us["Value"]."')";
-		pg_query($connect ,$query);
-	}
-
-
-}
 }

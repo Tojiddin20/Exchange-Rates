@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('usd_archives', function (Blueprint $table) {
-            $table->id();
-            $table->string('code');
-            $table->float('nominal');
-            $table->float('value');
+        Schema::table('exchange_rates', function (Blueprint $table) {
+            $table->renameColumn('day', 'date');
         });
     }
 
@@ -28,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usd_archives');
+        Schema::table('exchange_rates', function (Blueprint $table) {
+            $table->renameColumn('date', 'day');
+        });
     }
 };

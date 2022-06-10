@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExchangeRateController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\ConversionController;
 
 
 /*
@@ -15,5 +17,14 @@ use App\Http\Controllers\ExchangeRateController;
 |
 */
 
-Route::get('/', [ExchangeRateController::class, 'index'])->name('rates');
-Route::get('/test', [ExchangeRateController::class, 'test'])->name('test');
+Route::get('/', [ExchangeRateController::class, 'index']);
+
+Route::get('/conversion', [ConversionController::class, 'index']);
+Route::post('/conversion', [ConversionController::class, 'submit']);
+
+Route::get('/prediction', function () {
+	return view('prediction.index');
+});
+
+Route::get('/test', [TestController::class, 'test']);
+

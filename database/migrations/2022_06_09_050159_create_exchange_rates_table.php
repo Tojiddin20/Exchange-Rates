@@ -15,10 +15,12 @@ return new class extends Migration
     {
         Schema::create('exchange_rates', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('name_of_currency');
+            $table->date('day');
+            $table->string('currency_from');
+            $table->string('currency_to');
             $table->float('nominal');
             $table->float('value');
+            $table->timestamps();
         });
     }
 
