@@ -20,7 +20,7 @@ use App\Http\Controllers\ConversionController;
 Route::get('/', [ExchangeRateController::class, 'index']);
 
 Route::get('/conversion', [ConversionController::class, 'index']);
-Route::post('/conversion', [ConversionController::class, 'submit']);
+Route::post('/conversion', [ConversionController::class, 'store']);
 
 Route::get('/prediction', function () {
 	return view('prediction.index');

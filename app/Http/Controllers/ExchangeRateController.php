@@ -10,7 +10,7 @@ class ExchangeRateController extends Controller
 
     public function index() {
         
-        $exchangeRate = ExchangeRate::orderBy('day', 'desc')->orderBy('currency_from', 'asc')->paginate(30);
+        $exchangeRate = ExchangeRate::orderBy('date', 'desc')->orderBy('currency_from', 'asc')->paginate(30);
 
         return view('index')->with([
             'exchangeRate' => $exchangeRate

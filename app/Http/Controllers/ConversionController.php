@@ -19,4 +19,16 @@ class ConversionController extends Controller
             'currencies' => $currencies
         ]);
     }
+
+    public function store(Request $request) {
+    
+        $currencies = $this->exchangeRateGetter->get();
+        
+        return view('conversion.index')->with([
+            'currencies' => $currencies,
+            'request' => $request->post()
+        ]);    
+    }
+
+
 }

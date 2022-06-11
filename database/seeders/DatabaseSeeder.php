@@ -22,12 +22,13 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
+
+    // RECEIVE AND SEED FRESH EXCHANGE RATES
         $currencies = $this->exchangeRateGetter->get();
-        // $archiveCurrencies = $this->exchangeRateGetter->getArchives();
 
         foreach ($currencies as $currency) {
             ExchangeRate::insert([
-                "day" => $currency['day'],
+                "date" => $currency['date'],
                 "currency_from" => $currency['currency_from'],
                 "currency_to" => $currency['currency_to'],
                 "nominal" => $currency['nominal'],
@@ -35,12 +36,32 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // ARCHIVE EXCHANGE RATES    
+        // $archiveCurrencies = $this->exchangeRateGetter->getArchives();
+        
+        // $month = 5;
+        // $day = 12;
+        // $calculate = 0;
+        // foreach ($archiveCurrencies as $currency) {
+        //     ExchangeRate::insert([
+        //         "date" => '2022-'.$month.'-'.$day,
+        //         "currency_from" => $currency['currency_from'],
+        //         "currency_to" => $currency['currency_to'],
+        //         "nominal" => $currency['nominal'],
+        //         "value" => $currency['value']
+        //     ]);
+            
+        //     $calculate++;
 
-        // \App\Models\User::factory(10)->create();
+        //     if($calculate == 5) {
+        //         $day++;
+        //         $calculate = 0;
+        //     }
+        //     if($day == 32) {
+        //         $month = 6;
+        //         $day = 1;
+        //     }
+        // }
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
     }
 }

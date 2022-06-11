@@ -29,7 +29,7 @@ class ExchangeRateGetter {
 	    foreach ($valute as $currencyCode => $v) {
 	    	if(in_array($currencyCode, ['TJS', 'USD', 'EUR', 'UZS', 'KZT'])) {
 	    		$currencies[] = [
-					"day" => $date,
+					"date" => $date,
 					"currency_from" => $currencyCode,
 					"currency_to" => 'RUB',
 					"nominal" => $v['Nominal'],
@@ -41,7 +41,7 @@ class ExchangeRateGetter {
 	    return $currencies;
 }
 	// public function getArchives() {
-	/// RECEIVE JSON TODAY'S EXCHANGE RATES
+	// // RECEIVE JSON TODAY'S EXCHANGE RATES
 	// 	$arrContextOptions = [
  //            "ssl" => [
  //                "verify_peer" => false,
@@ -89,7 +89,7 @@ class ExchangeRateGetter {
 	// 	}
 	// 	$i++;
 	// }
-	// dd($archiveCurrencies);
+
 	// return $archiveCurrencies;
 	// }
 

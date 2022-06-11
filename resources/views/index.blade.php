@@ -16,7 +16,7 @@
                   <tbody>
                     @foreach ($exchangeRate as $currency)
                     <tr>
-                      <th scope="row">{{ $currency['day']}}</th>
+                      <th scope="row">{{ $currency['date']}}</th>
                       <th>{{ $currency['currency_from'] }}</th>
                       <th>{{ $currency['currency_to'] }}</th>
                       <th>{{ $currency['nominal'] }}</th>
