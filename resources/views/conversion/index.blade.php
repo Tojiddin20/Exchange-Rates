@@ -69,9 +69,13 @@
 				</select>
                 
                 <select class="form-select" aria-label="Default select example" name="select_rub">
+                	
                 	@for ($i = 0; $i < count($currencies); $i++)
+					
 					<option>{{ $currencies[$i]['currency_from'] }}</option>
+					
 					@endfor
+					
 				</select>
 
 				<input type="number" class="form-control mb-2" name="type_rub"> 

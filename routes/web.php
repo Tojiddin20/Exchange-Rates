@@ -18,6 +18,7 @@ use App\Http\Controllers\ConversionController;
 */
 
 Route::get('/', [ExchangeRateController::class, 'index']);
+Route::post('/', [ExchangeRateController::class, 'store']);
 
 Route::get('/conversion', [ConversionController::class, 'index']);
 Route::post('/conversion', [ConversionController::class, 'store']);

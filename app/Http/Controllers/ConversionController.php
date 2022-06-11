@@ -23,7 +23,7 @@ class ConversionController extends Controller
     public function store(Request $request) {
     
         $currencies = $this->exchangeRateGetter->get();
-        
+
         return view('conversion.index')->with([
             'currencies' => $currencies,
             'request' => $request->post()
