@@ -13,6 +13,6 @@ class TestController extends Controller
     ) {}
 
     public function test() {
-        return $this->exchangeRateGetter->getArchives();
+        return $this->exchangeRateGetter->get();
     }
 }

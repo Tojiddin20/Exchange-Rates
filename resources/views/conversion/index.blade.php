@@ -30,19 +30,19 @@
 
 				@switch($_POST['select_foreign'])
 
-					@case('USD')
+					@case('EUR')
 						{{ $request['type_foreign'] * $currencies[0]['value'] / $currencies[0]['nominal'] }}	
 						@break
 
-					@case('EUR')
+					@case('KZT')
 						{{ $request['type_foreign'] * $currencies[1]['value'] / $currencies[1]['nominal']}}	
 						@break
 
-					@case('KZT')
+					@case('TJS')
 						{{ $request['type_foreign'] * $currencies[2]['value'] / $currencies[2]['nominal']}}	
 						@break
 
-					@case('TJS')
+					@case('USD')
 						{{ $request['type_foreign'] * $currencies[3]['value'] / $currencies[3]['nominal']}}	
 						@break
 
@@ -86,19 +86,19 @@
 
 				@switch($_POST['select_rub'])
 
-					@case('USD')
+					@case('EUR')
 						{{ $request['type_rub'] / $currencies[0]['value'] * $currencies[0]['nominal'] }}	
 						@break
 
-					@case('EUR')
+					@case('KZT')
 						{{ $request['type_rub'] / $currencies[1]['value'] * $currencies[1]['nominal']}}	
 						@break
 
-					@case('KZT')
+					@case('TJS')
 						{{ $request['type_rub'] / $currencies[2]['value'] * $currencies[2]['nominal']}}	
 						@break
 
-					@case('TJS')
+					@case('USD')
 						{{ $request['type_rub'] / $currencies[3]['value'] * $currencies[3]['nominal']}}	
 						@break
 

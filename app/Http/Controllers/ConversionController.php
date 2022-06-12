@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\ExchangeRateGetter;
+use App\Models\ExchangeRate;
 
 class ConversionController extends Controller
 {
-    public function __construct(
-        private ExchangeRateGetter $exchangeRateGetter
-    ) {}
-
     public function index() {
 
-        $currencies = $this->exchangeRateGetter->get();
+        $currencies = ExchangeRate::orderBy('date', 'desc')->orderBy('currency_from', 'asc')->take(5)->get();
 
         return view('conversion.index')->with([
             'currencies' => $currencies
@@ -22,7 +18,7 @@ class ConversionController extends Controller
 
     public function store(Request $request) {
     
-        $currencies = $this->exchangeRateGetter->get();
+        $currencies = ExchangeRate::orderBy('date', 'desc')->orderBy('currency_from', 'asc')->take(5)->get();
 
         return view('conversion.index')->with([
             'currencies' => $currencies,

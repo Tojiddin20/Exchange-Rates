@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ExchangeRate;
+use Carbon\Carbon;
 
 class ExchangeRateController extends Controller
 {
@@ -15,7 +16,7 @@ class ExchangeRateController extends Controller
 
         return view('index')->with([
             'exchangeRate' => $exchangeRate,
-            'currencies' => $currencies,
+            'currencies' => $currencies
         ]);
     }
 

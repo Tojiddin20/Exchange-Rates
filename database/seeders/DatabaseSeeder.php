@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($currencies as $currency) {
             ExchangeRate::insert([
-                "date" => $currency['date'],
+                "date" => date("Y-m-d"),
                 "currency_from" => $currency['currency_from'],
                 "currency_to" => $currency['currency_to'],
                 "nominal" => $currency['nominal'],
@@ -39,8 +39,8 @@ class DatabaseSeeder extends Seeder
         // ARCHIVE EXCHANGE RATES    
         // $archiveCurrencies = $this->exchangeRateGetter->getArchives();
         
-        // $month = 5;
-        // $day = 12;
+        // $month = 6;
+        // $day = 10;
         // $calculate = 0;
         // foreach ($archiveCurrencies as $currency) {
         //     ExchangeRate::insert([
@@ -54,12 +54,12 @@ class DatabaseSeeder extends Seeder
         //     $calculate++;
 
         //     if($calculate == 5) {
-        //         $day++;
+        //         $day--;
         //         $calculate = 0;
         //     }
-        //     if($day == 32) {
-        //         $month = 6;
-        //         $day = 1;
+        //     if($day == 0) {
+        //         $month = 5;
+        //         $day = 31;
         //     }
         // }
 
