@@ -11,7 +11,7 @@
 
             </div>
 
-             <div class="col-md-4">
+             <div class="col-md-3 text-center">
         
               <form action="/" method="post">
                 @csrf
@@ -26,7 +26,7 @@
                   @endfor
                 
                 </select>
-                  <button class="btn btn-primary mt-1" type="submit" name="submit">Submit</button>
+                  <button class="btn btn-secondary mt-1" type="submit" name="submit">Submit</button>
               </form>
 
             <hr>
@@ -47,21 +47,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @if (isset($_POST['submit']))
+                    @if (isset($_POST['submit']) && $_POST['select'] != 'ALL CURRENCIES')
 
                       @switch($_POST['select'])
-
-                        @case('ALL CURRENCIES')
-                          @foreach ($exchangeRate as $currency)
-                      <tr>
-                        <th scope="row">{{ $currency['date']}}</th>
-                        <th>{{ $currency['currency_from'] }}</th>
-                        <th>{{ $currency['currency_to'] }}</th>
-                        <th>{{ $currency['nominal'] }}</th>
-                        <th>{{ $currency['value'] }}</th>
-                      </tr>
-                      @endforeach
-                        @break
 
                         @case('EUR')
                           @foreach ($eur as $currency)
@@ -137,10 +125,10 @@
                       </tr>
                       @endforeach
 
-                    @endif
                   </tbody>
                 </table>
                 {{ $exchangeRate->links() }}
+                    @endif
             </div>
         </div>
     </div>

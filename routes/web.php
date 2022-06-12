@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExchangeRateController;
 use App\Http\Controllers\TestController;
-use App\Http\Controllers\ConversionController;
-use App\Http\Controllers\PredictionController;
 
 
 /*
@@ -19,13 +17,13 @@ use App\Http\Controllers\PredictionController;
 */
 
 Route::get('/', [ExchangeRateController::class, 'index']);
-Route::post('/', [ExchangeRateController::class, 'store']);
+Route::post('/', [ExchangeRateController::class, 'load']);
 
-Route::get('/conversion', [ConversionController::class, 'index']);
-Route::post('/conversion', [ConversionController::class, 'store']);
+Route::get('/conversion', [ExchangeRateController::class, 'conversionIndex']);
+Route::post('/conversion', [ExchangeRateController::class, 'conversionLoad']);
 
-Route::get('/prediction', [PredictionController::class, 'index']);
-Route::post('/prediction', [PredictionController::class, 'store']);
+Route::get('/prediction', [ExchangeRateController::class, 'convertIndex']);
+Route::post('/prediction', [ExchangeRateController::class, 'convertLoad']);
 
 
 Route::get('/test', [TestController::class, 'test']);

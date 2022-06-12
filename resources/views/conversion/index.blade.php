@@ -31,23 +31,23 @@
 				@switch($_POST['select_foreign'])
 
 					@case('EUR')
-						{{ $request['type_foreign'] * $currencies[0]['value'] / $currencies[0]['nominal'] }}	
+						{{ $_POST['type_foreign'] * $currencies[0]['value'] / $currencies[0]['nominal'] }}	
 						@break
 
 					@case('KZT')
-						{{ $request['type_foreign'] * $currencies[1]['value'] / $currencies[1]['nominal']}}	
+						{{ $_POST['type_foreign'] * $currencies[1]['value'] / $currencies[1]['nominal']}}	
 						@break
 
 					@case('TJS')
-						{{ $request['type_foreign'] * $currencies[2]['value'] / $currencies[2]['nominal']}}	
+						{{ $_POST['type_foreign'] * $currencies[2]['value'] / $currencies[2]['nominal']}}	
 						@break
 
 					@case('USD')
-						{{ $request['type_foreign'] * $currencies[3]['value'] / $currencies[3]['nominal']}}	
+						{{ $_POST['type_foreign'] * $currencies[3]['value'] / $currencies[3]['nominal']}}	
 						@break
 
 					@case('UZS')
-						{{ $request['type_foreign'] * $currencies[4]['value'] / $currencies[4]['nominal']}}	
+						{{ $_POST['type_foreign'] * $currencies[4]['value'] / $currencies[4]['nominal']}}	
 						@break
 
 				@endswitch
@@ -87,23 +87,23 @@
 				@switch($_POST['select_rub'])
 
 					@case('EUR')
-						{{ $request['type_rub'] / $currencies[0]['value'] * $currencies[0]['nominal'] }}	
+						{{ $_POST['type_rub'] / $currencies[0]['value'] * $currencies[0]['nominal'] }}	
 						@break
 
 					@case('KZT')
-						{{ $request['type_rub'] / $currencies[1]['value'] * $currencies[1]['nominal']}}	
+						{{ $_POST['type_rub'] / $currencies[1]['value'] * $currencies[1]['nominal']}}	
 						@break
 
 					@case('TJS')
-						{{ $request['type_rub'] / $currencies[2]['value'] * $currencies[2]['nominal']}}	
+						{{ $_POST['type_rub'] / $currencies[2]['value'] * $currencies[2]['nominal']}}	
 						@break
 
 					@case('USD')
-						{{ $request['type_rub'] / $currencies[3]['value'] * $currencies[3]['nominal']}}	
+						{{ $_POST['type_rub'] / $currencies[3]['value'] * $currencies[3]['nominal']}}	
 						@break
 
 					@case('UZS')
-						{{ $request['type_rub'] / $currencies[4]['value'] * $currencies[4]['nominal']}}	
+						{{ $_POST['type_rub'] / $currencies[4]['value'] * $currencies[4]['nominal']}}	
 						@break
 
 				@endswitch
