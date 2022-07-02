@@ -15,7 +15,7 @@ class ExchangeRateController extends Controller
     public function index() {
         
         $exchangeRate = ExchangeRate::orderBy('date', 'desc')->orderBy('currency_from', 'asc')->paginate(30);
-        $currencies = ExchangeRate::distinct('currency_from')->pluck('currency_from');
+        $currencies = ExchangeRate::distinct()->pluck('currency_from');
 
         return view('index')->with([
             'exchangeRate' => $exchangeRate,
@@ -26,7 +26,7 @@ class ExchangeRateController extends Controller
     public function load() {
        
         $exchangeRate = ExchangeRate::orderBy('date', 'desc')->orderBy('currency_from', 'asc')->paginate(30);
-        $currencies = ExchangeRate::distinct('currency_from')->pluck('currency_from');
+        $currencies = ExchangeRate::distinct()->pluck('currency_from');
         $eur = ExchangeRate::orderBy('date', 'desc')->where('currency_from', 'EUR')->paginate(30);
         $kzt = ExchangeRate::orderBy('date', 'desc')->where('currency_from', 'KZT')->paginate(30);
         $tjs = ExchangeRate::orderBy('date', 'desc')->where('currency_from', 'TJS')->paginate(30);
@@ -65,20 +65,18 @@ class ExchangeRateController extends Controller
 
       public function convertIndex() {
 
-        $currencies = ExchangeRate::orderBy('date', 'desc')->orderBy('currency_from', 'asc')->take(5)->get();
+        $currencies = ExchangeRate::distinct()->pluck('currency_from');
         $prediction = $this->ratePredictionCalcutator->get();
-        $carbon = carbon::tomorrow();
 
         return view('prediction.index')->with([
             'currencies' => $currencies,
             'prediction' => $prediction,
-            'carbon' => $carbon
         ]);
     }
 
     public function convertLoad() {
 
-        $currencies = ExchangeRate::orderBy('date', 'desc')->orderBy('currency_from', 'asc')->take(5)->get();
+        $currencies = ExchangeRate::distinct()->pluck('currency_from');
         $prediction = $this->ratePredictionCalcutator->get();
         $carbon = now()->addDay();
 

@@ -53,62 +53,62 @@
 
                         @case('EUR')
                           @foreach ($eur as $currency)
-                      <tr>
-                        <th scope="row">{{ $currency['date']}}</th>
-                        <th>{{ $currency['currency_from'] }}</th>
-                        <th>{{ $currency['currency_to'] }}</th>
-                        <th>{{ $currency['nominal'] }}</th>
-                        <th>{{ $currency['value'] }}</th>
-                      </tr>
-                      @endforeach
+                            <tr>
+                              <th scope="row">{{ $currency['date']}}</th>
+                              <th>{{ $currency['currency_from'] }}</th>
+                              <th>{{ $currency['currency_to'] }}</th>
+                              <th>{{ $currency['nominal'] }}</th>
+                              <th>{{ $currency['value'] }}</th>
+                            </tr>
+                          @endforeach
                         @break
 
                         @case('KZT')
                           @foreach ($kzt as $currency)
-                      <tr>
-                        <th scope="row">{{ $currency['date']}}</th>
-                        <th>{{ $currency['currency_from'] }}</th>
-                        <th>{{ $currency['currency_to'] }}</th>
-                        <th>{{ $currency['nominal'] }}</th>
-                        <th>{{ $currency['value'] }}</th>
-                      </tr>
-                      @endforeach
+                            <tr>
+                              <th scope="row">{{ $currency['date']}}</th>
+                              <th>{{ $currency['currency_from'] }}</th>
+                              <th>{{ $currency['currency_to'] }}</th>
+                              <th>{{ $currency['nominal'] }}</th>
+                              <th>{{ $currency['value'] }}</th>
+                            </tr>
+                          @endforeach
                         @break
 
                         @case('TJS')
                           @foreach ($tjs as $currency)
-                      <tr>
-                        <th scope="row">{{ $currency['date']}}</th>
-                        <th>{{ $currency['currency_from'] }}</th>
-                        <th>{{ $currency['currency_to'] }}</th>
-                        <th>{{ $currency['nominal'] }}</th>
-                        <th>{{ $currency['value'] }}</th>
-                      </tr>
-                      @endforeach
+                            <tr>
+                              <th scope="row">{{ $currency['date']}}</th>
+                              <th>{{ $currency['currency_from'] }}</th>
+                              <th>{{ $currency['currency_to'] }}</th>
+                              <th>{{ $currency['nominal'] }}</th>
+                              <th>{{ $currency['value'] }}</th>
+                            </tr>
+                          @endforeach
                         @break
 
                         @case('USD')
                           @foreach ($usd as $currency)
-                      <tr>
-                        <th scope="row">{{ $currency['date']}}</th>
-                        <th>{{ $currency['currency_from'] }}</th>
-                        <th>{{ $currency['currency_to'] }}</th>
-                        <th>{{ $currency['nominal'] }}</th>
-                        <th>{{ $currency['value'] }}</th>
-                      </tr>
-                      @endforeach
+                            <tr>
+                              <th scope="row">{{ $currency['date']}}</th>
+                              <th>{{ $currency['currency_from'] }}</th>
+                              <th>{{ $currency['currency_to'] }}</th>
+                              <th>{{ $currency['nominal'] }}</th>
+                              <th>{{ $currency['value'] }}</th>
+                            </tr>
+                          @endforeach
                         @break
 
                         @case('UZS')
                           @foreach ($uzs as $currency)
-                      <tr>
-                        <th scope="row">{{ $currency['date']}}</th>
-                        <th>{{ $currency['currency_from'] }}</th>
-                        <th>{{ $currency['currency_to'] }}</th>
-                        <th>{{ $currency['nominal'] }}</th>
-                        <th>{{ $currency['value'] }}</th>
-                      </tr>
-                      @endforeach
+                            <tr>
+                              <th scope="row">{{ $currency['date']}}</th>
+                              <th>{{ $currency['currency_from'] }}</th>
+                              <th>{{ $currency['currency_to'] }}</th>
+                              <th>{{ $currency['nominal'] }}</th>
+                              <th>{{ $currency['value'] }}</th>
+                            </tr>
+                          @endforeach
                         @break
 
                     @endswitch
@@ -116,19 +116,19 @@
                     @else
 
                       @foreach ($exchangeRate as $currency)
-                      <tr>
-                        <th scope="row">{{ $currency['date']}}</th>
-                        <th>{{ $currency['currency_from'] }}</th>
-                        <th>{{ $currency['currency_to'] }}</th>
-                        <th>{{ $currency['nominal'] }}</th>
-                        <th>{{ $currency['value'] }}</th>
-                      </tr>
+                        <tr>
+                          <th scope="row">{{ $currency['date']}}</th>
+                          <th>{{ $currency['currency_from'] }}</th>
+                          <th>{{ $currency['currency_to'] }}</th>
+                          <th>{{ $currency['nominal'] }}</th>
+                          <th>{{ $currency['value'] }}</th>
+                        </tr>
                       @endforeach
 
+                    @endif
                   </tbody>
                 </table>
-                {{ $exchangeRate->links() }}
-                    @endif
+              {{ $exchangeRate->links() }}
             </div>
         </div>
     </div>

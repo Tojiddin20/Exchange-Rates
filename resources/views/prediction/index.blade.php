@@ -21,9 +21,9 @@
 
 		      	@for ($i = 0; $i < count($currencies); $i++)
 						
-							<option>{{ $currencies[$i]['currency_from'] }}</option>
+					<option>{{ $currencies[$i] }}</option>
 						
-						@endfor
+				@endfor
 
 		      </select>
 			<button class="btn btn-secondary mt-1" type="submit" name="submit_convert">Submit</button>

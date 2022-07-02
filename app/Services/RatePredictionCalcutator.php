@@ -20,59 +20,49 @@ class RatePredictionCalcutator {
 		$sumOfUzs = 0;
 
 		// MAKE ARRAYS
-		$step = 0;
-		foreach ($exchangeRatesOfEur as $value) {
-			$arrayOfEur[$step] = [
+		foreach ($exchangeRatesOfEur as $key => $value) {
+			$arrayOfEur[$key] = [
 				'currency_from' => $value->currency_from,
 				'nominal' => $value->nominal,
 				'value' => $value->value
 			];
-			$sumOfEur += $arrayOfEur[$step]['value'];
-			$step++;
+			$sumOfEur += $arrayOfEur[$key]['value'];
 		}
 
-		$step = 0;
-		foreach ($exchangeRatesOfKzt as $value) {
-			$arrayOfKzt[$step] = [
+		foreach ($exchangeRatesOfKzt as $key => $value) {
+			$arrayOfKzt[$key] = [
 				'currency_from' => $value->currency_from,
 				'nominal' => $value->nominal,
 				'value' => $value->value
 			];
-			$sumOfKzt += $arrayOfEur[$step]['value'];
-			$step++;
+			$sumOfKzt += $arrayOfEur[$key]['value'];
 		}
 
-		$step = 0;
-		foreach ($exchangeRatesOfTjs as $value) {
-			$arrayOfTjs[$step] = [
+		foreach ($exchangeRatesOfTjs as $key => $value) {
+			$arrayOfTjs[$key] = [
 				'currency_from' => $value->currency_from,
 				'nominal' => $value->nominal,
 				'value' => $value->value
 			];
-			$sumOfTjs += $arrayOfTjs[$step]['value'];
-			$step++;
+			$sumOfTjs += $arrayOfTjs[$key]['value'];
 		}
 
-		$step = 0;
-		foreach ($exchangeRatesOfUsd as $value) {
-			$arrayOfUsd[$step] = [
+		foreach ($exchangeRatesOfUsd as $key => $value) {
+			$arrayOfUsd[$key] = [
 				'currency_from' => $value->currency_from,
 				'nominal' => $value->nominal,
 				'value' => $value->value
 			];
-			$sumOfUsd += $arrayOfUsd[$step]['value'];
-			$step++;
+			$sumOfUsd += $arrayOfUsd[$key]['value'];
 		}
 
-		$step = 0;
-		foreach ($exchangeRatesOfUzs as $value) {
-			$arrayOfUzs[$step] = [
+		foreach ($exchangeRatesOfUzs as $key => $value) {
+			$arrayOfUzs[$key] = [
 				'currency_from' => $value->currency_from,
 				'nominal' => $value->nominal,
 				'value' => $value->value
 			];
-			$sumOfUzs += $arrayOfUzs[$step]['value'];
-			$step++;
+			$sumOfUzs += $arrayOfUzs[$key]['value'];
 		}
 
 		// REVERSE ARRAY FOR CLARITY
@@ -83,54 +73,44 @@ class RatePredictionCalcutator {
 		$arrayOfUzs = array_reverse($arrayOfUzs);
 
 		// MAKE AN ALGORITH TO PREDICT EXCHANGE RATE FOR THE NEXT 30 DAYS
-		$step = 0;
-		foreach ($arrayOfEur as $value) {
-			$predictionEur[$step] = [
+		foreach ($arrayOfEur as $key => $value) {
+			$predictionEur[$key] = [
 				'currency_from' => $value['currency_from'],
 				'nominal' => $value['nominal'],
 				'value' => number_format(($sumOfEur - ($value['value'] - $arrayOfEur[29]['value']) / 2 * 30) / 30, 4)
 			];
-			$step++;
 		}
 
-		$step = 0;
-		foreach ($arrayOfKzt as $value) {
-			$predictionKzt[$step] = [
+		foreach ($arrayOfKzt as $key => $value) {
+			$predictionKzt[$key] = [
 				'currency_from' => $value['currency_from'],
 				'nominal' => $value['nominal'],
 				'value' => number_format(($sumOfKzt - ($value['value'] - $arrayOfKzt[29]['value']) / 2 * 30) / 30, 4)
 			];
-			$step++;
 		}
 
-		$step = 0;
-		foreach ($arrayOfTjs as $value) {
-			$predictionTjs[$step] = [
+		foreach ($arrayOfTjs as $key => $value) {
+			$predictionTjs[$key] = [
 				'currency_from' => $value['currency_from'],
 				'nominal' => $value['nominal'],
 				'value' => number_format(($sumOfTjs - ($value['value'] - $arrayOfTjs[29]['value']) / 2 * 30) / 30, 4)
 			];
-			$step++;
 		}
 
-		$step = 0;
-		foreach ($arrayOfUsd as $value) {
-			$predictionUsd[$step] = [
+		foreach ($arrayOfUsd as $key => $value) {
+			$predictionUsd[$key] = [
 				'currency_from' => $value['currency_from'],
 				'nominal' => $value['nominal'],
 				'value' => number_format(($sumOfUsd - ($value['value'] - $arrayOfUsd[29]['value']) / 2 * 30) / 30, 4)
 			];
-			$step++;
 		}
 
-		$step = 0;
-		foreach ($arrayOfUzs as $value) {
-			$predictionUzs[$step] = [
+		foreach ($arrayOfUzs as $key => $value) {
+			$predictionUzs[$key] = [
 				'currency_from' => $value['currency_from'],
 				'nominal' => $value['nominal'],
 				'value' => number_format(($sumOfUzs - ($value['value'] - $arrayOfUzs[29]['value']) / 2 * 30) / 30, 4)
 			];
-			$step++;
 		}
 
 		$prediction = [$predictionEur, $predictionKzt, $predictionTjs, $predictionUsd, $predictionUzs];

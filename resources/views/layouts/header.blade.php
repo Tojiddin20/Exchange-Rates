@@ -18,7 +18,7 @@
         <a class="nav-link" href="/conversion">Калькулятор</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/prediction">Прогноз</a>
+        <a class="nav-link" href="/prediction">Прогноз курса валют</a>
       </li>
     </ul>
   </div>
